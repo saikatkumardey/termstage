@@ -1,0 +1,33 @@
+title: "mytool — H3 Geospatial CLI"
+theme: dark
+prompt: "$ "
+width: 700
+
+steps:
+  - comment: "# termsvg — polished terminal demos from YAML, no recording needed"
+
+  - cmd: "mytool encode 37.7749 -122.4194"
+    output: "8928308280fffff"
+
+  - cmd: "mytool encode 51.5074 -0.1278"
+    output: "8930e1042dfffff"
+
+  - cmd: "mytool --help"
+    output: |
+      Usage: mytool [OPTIONS] COMMAND [ARGS]...
+
+        Geospatial H3 cell encoder / decoder.
+
+      Commands:
+        encode    Encode lat/lng to H3 cell ID
+        decode    Decode H3 cell ID to lat/lng
+        batch     Process a CSV of coordinates
+
+      Options:
+        --resolution INT  H3 resolution (0-15, default 9)
+        --help            Show this message and exit.
+
+  - comment: "# Supports batch mode — process thousands of rows instantly"
+
+  - cmd: "mytool encode --batch coords.csv --resolution 9"
+    output: "Processed 1000 rows → output.jsonl"

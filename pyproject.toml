@@ -1,0 +1,20 @@
+[project]
+name = "termsvg"
+version = "0.1.0"
+description = "Generate polished terminal demo SVGs from YAML — no recording required"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "typer>=0.9",
+    "pyyaml>=6.0",
+]
+
+[project.scripts]
+termsvg = "termsvg.cli:app"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/termsvg"]

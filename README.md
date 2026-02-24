@@ -20,17 +20,22 @@ uv add termstage
 
 ```yaml
 # demo.yaml
-title: "My CLI Tool"
+title: "notes — a simple CLI notes app"
 theme: dark
 prompt: "$ "
 width: 700
 
 steps:
-  - comment: "# Install and run"
-  - cmd: "mytool --version"
-    output: "mytool 1.2.0"
-  - cmd: "mytool encode 37.7749 -122.4194"
-    output: "8928308280fffff"
+  - cmd: "notes --version"
+    output: "notes 1.0.0"
+  - cmd: "notes add 'Fix the login bug before Friday'"
+    output: "Added note #1"
+  - cmd: "notes list"
+    output: |
+      #1  Fix the login bug before Friday
+  - comment: "# Search works too"
+  - cmd: "notes search 'login'"
+    output: "#1  Fix the login bug before Friday"
 ```
 
 **2. Render:**
@@ -71,19 +76,24 @@ prompt: "$ "                # Prompt string
 width: 700                  # SVG width in pixels (default: 700)
 
 steps:
-  - cmd: "mytool encode 37.7749 -122.4194"
-    output: "8928308280fffff"
+  - cmd: "notes --version"
+    output: "notes 1.0.0"
 
-  - cmd: "mytool --help"
+  - cmd: "notes add 'Fix the login bug before Friday'"
+    output: "Added note #1"
+
+  - cmd: "notes --help"
     output: |
-      Usage: mytool [OPTIONS] COMMAND
-        encode    Encode lat/lng to cell ID
-        decode    Decode cell ID to lat/lng
+      Usage: notes [OPTIONS] COMMAND
+        add     Add a new note
+        list    List all notes
+        search  Search notes by keyword
+        done    Mark a note as done
 
-  - comment: "# Supports batch mode"
+  - comment: "# Search works too"
 
-  - cmd: "mytool encode --batch coords.csv"
-    output: "Processed 1000 rows → output.jsonl"
+  - cmd: "notes search 'login'"
+    output: "#1  Fix the login bug before Friday"
 ```
 
 Two step types: `cmd` (prompt + command + optional output) and `comment` (no prompt, styled like a code comment).

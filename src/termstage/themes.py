@@ -1,4 +1,4 @@
-"""Terminal color themes for termsvg."""
+"""Terminal color themes for termstage."""
 
 THEMES: dict[str, dict] = {
     "dark": {

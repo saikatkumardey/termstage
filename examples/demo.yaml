@@ -4,7 +4,7 @@ prompt: "$ "
 width: 700
 
 steps:
-  - comment: "# termsvg — polished terminal demos from YAML, no recording needed"
+  - comment: "# termstage — polished terminal demos from YAML, no recording needed"
 
   - cmd: "mytool encode 37.7749 -122.4194"
     output: "8928308280fffff"

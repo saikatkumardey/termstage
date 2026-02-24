@@ -1,4 +1,4 @@
-"""Pure Python SVG generation for termsvg (static rendering)."""
+"""Pure Python SVG generation for termstage (static rendering)."""
 
 from __future__ import annotations
 
@@ -80,7 +80,7 @@ def render_svg(config: dict[str, Any]) -> str:
     config keys:
       title, theme, prompt, width, steps
     """
-    title = config.get("title", "termsvg demo")
+    title = config.get("title", "termstage demo")
     theme_name = config.get("theme", "dark")
     prompt = config.get("prompt", "$ ")
     width = int(config.get("width", 700))

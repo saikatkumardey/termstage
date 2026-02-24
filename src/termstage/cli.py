@@ -1,4 +1,4 @@
-"""termsvg CLI — typer app."""
+"""termstage CLI — typer app."""
 
 from __future__ import annotations
 
@@ -15,7 +15,7 @@ from .renderer import render_svg
 from .themes import THEMES
 
 app = typer.Typer(
-    name="termsvg",
+    name="termstage",
     help="Generate polished terminal demo SVGs from YAML — no recording required.",
     add_completion=False,
 )
@@ -79,7 +79,7 @@ prompt: "$ "
 width: 700
 
 steps:
-  - comment: "# Welcome to termsvg — terminal demos without recording"
+  - comment: "# Welcome to termstage — terminal demos without recording"
 
   - cmd: "mytool encode 37.7749 -122.4194"
     output: "8928308280fffff"
@@ -101,7 +101,7 @@ steps:
 """
     output.write_text(content, encoding="utf-8")
     typer.echo(f"✅ Created {output}")
-    typer.echo("Run: termsvg render demo.yaml")
+    typer.echo("Run: termstage render demo.yaml")
 
 
 @app.command()

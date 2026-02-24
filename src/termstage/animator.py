@@ -1,4 +1,4 @@
-"""CSS keyframe-based animated SVG generation for termsvg."""
+"""CSS keyframe-based animated SVG generation for termstage."""
 
 from __future__ import annotations
 
@@ -130,7 +130,7 @@ def render_animated_svg(config: dict[str, Any]) -> str:
     Render an animated SVG terminal window from config dict.
     Uses CSS @keyframes for typewriter + fade-in effects. No JS.
     """
-    title = config.get("title", "termsvg demo")
+    title = config.get("title", "termstage demo")
     theme_name = config.get("theme", "dark")
     prompt = config.get("prompt", "$ ")
     width = int(config.get("width", 700))

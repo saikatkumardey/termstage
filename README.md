@@ -2,9 +2,9 @@
 
 <img src="demo-animated.svg" alt="termstage demo" width="720">
 
-Fake terminal demos. Write a YAML file describing the session, run `termstage render`, get an SVG. No recording, no live shell, no asciinema.
+Generate polished terminal demo SVGs from a YAML file. No recording, no live shell, no asciinema.
 
-Good for README headers and docs where you want to show what a CLI looks like without screenshotting your actual terminal.
+Write what you want the terminal to show. Get a clean SVG you can drop into any README, doc, or portfolio.
 
 ---
 
@@ -16,93 +16,113 @@ pip install termstage
 uv add termstage
 ```
 
-## Quick Start
+---
 
-**1. Write a demo YAML:**
+## The Flow
 
-```yaml
-# demo.yaml
-title: "notes — a simple CLI notes app"
-theme: dark
-prompt: "$ "
-width: 700
-
-steps:
-  - cmd: "notes --version"
-    output: "notes 1.0.0"
-  - cmd: "notes add 'Fix the login bug before Friday'"
-    output: "Added note #1"
-  - cmd: "notes list"
-    output: |
-      #1  Fix the login bug before Friday
-  - comment: "# Search works too"
-  - cmd: "notes search 'login'"
-    output: "#1  Fix the login bug before Friday"
-```
-
-**2. Render:**
+**1. Scaffold a starter file**
 
 ```bash
-termstage render demo.yaml            # → demo.svg
-termstage render demo.yaml -o out.svg
-termstage render demo.yaml --animated # CSS typewriter animation
+termstage init
 ```
 
-**3. Preview:**
+Creates `demo.yaml` in the current directory with example steps you can edit.
+
+**2. Edit `demo.yaml`**
+
+Open `demo.yaml` and replace the example steps with your own commands and output. See [YAML format](#yaml-format) below.
+
+**3. Preview in browser**
 
 ```bash
 termstage preview demo.yaml
 ```
 
----
+Opens a rendered SVG in your default browser. Iterate here until it looks right.
 
-## Commands
+**4. Render to SVG**
 
-| Command | Description |
-|---------|-------------|
-| `termstage render <file.yaml>` | Render static SVG |
-| `termstage render <file.yaml> -o out.svg` | Custom output path |
-| `termstage render <file.yaml> --animated` | Animated CSS typewriter SVG |
-| `termstage init` | Create a starter `demo.yaml` in current directory |
-| `termstage themes` | List available themes |
-| `termstage preview <file.yaml>` | Render and open in browser |
+```bash
+# Static SVG
+termstage render demo.yaml
+
+# Animated CSS typewriter (recommended for READMEs)
+termstage render demo.yaml --animated
+
+# Custom output path
+termstage render demo.yaml --animated -o assets/demo.svg
+```
+
+**5. Embed in your README**
+
+```markdown
+![demo](demo.svg)
+```
+
+Or for more control over sizing:
+
+```html
+<img src="demo-animated.svg" alt="demo" width="700">
+```
+
+The animated SVG uses pure CSS — no JavaScript. Works on GitHub, GitLab, and anywhere SVG is rendered.
 
 ---
 
 ## YAML Format
 
 ```yaml
-title: "my cli demo"        # Window title bar text
-theme: dark                 # dark | light | dracula | nord
-prompt: "$ "                # Prompt string
-width: 700                  # SVG width in pixels (default: 700)
+title: "my-cli"        # Title bar text
+theme: dark            # dark | light | dracula | nord  (default: dark)
+prompt: "$ "           # Prompt string (default: "$ ")
+width: 700             # SVG width in pixels (default: 700)
 
 steps:
-  - cmd: "notes --version"
-    output: "notes 1.0.0"
+  - cmd: "my-cli --version"
+    output: "my-cli 1.0.0"
 
-  - cmd: "notes add 'Fix the login bug before Friday'"
-    output: "Added note #1"
-
-  - cmd: "notes --help"
+  - cmd: "my-cli process data.csv"
     output: |
-      Usage: notes [OPTIONS] COMMAND
-        add     Add a new note
-        list    List all notes
-        search  Search notes by keyword
-        done    Mark a note as done
+      Reading data.csv...
+      Processed 10,000 rows
+      Output → results.jsonl
 
-  - comment: "# Search works too"
+  - comment: "# Comments render without a prompt, styled as code comments"
 
-  - cmd: "notes search 'login'"
-    output: "#1  Fix the login bug before Friday"
+  - cmd: "my-cli --help"
+    output: |
+      Usage: my-cli [OPTIONS] COMMAND
+
+        process   Process a CSV file
+        export    Export results
+
+      Options:
+        --help    Show this message and exit.
 ```
 
-Two step types: `cmd` (prompt + command + optional output) and `comment` (no prompt, styled like a code comment).
+### Step types
+
+| Type | Fields | Description |
+|------|--------|-------------|
+| `cmd` | `cmd`, `output` (optional) | Renders prompt + command + output |
+| `comment` | `comment` | Renders a line styled as a code comment, no prompt |
+
+### Top-level fields
+
+| Field | Default | Description |
+|-------|---------|-------------|
+| `title` | `"terminal"` | Title bar text |
+| `theme` | `dark` | Colour theme |
+| `prompt` | `"$ "` | Prompt string |
+| `width` | `700` | SVG width in pixels |
 
 ---
 
 ## Themes
+
+```bash
+termstage themes
+```
 
 | Theme | Background | Based on |
 |-------|------------|----------|
@@ -111,35 +131,21 @@ Two step types: `cmd` (prompt + command + optional output) and `comment` (no pro
 | `dracula` | `#282a36` | Dracula |
 | `nord` | `#2e3440` | Nord |
 
-```bash
-termstage themes
-```
+Set with `theme: <name>` in your YAML.
 
 ---
 
-## Animated SVG
+## Commands
 
-`--animated` generates a pure CSS animated SVG: commands type out character by character, output fades in after each one, cursor blinks. No JavaScript — works in GitHub READMEs and anywhere SVG is supported.
-
-```bash
-termstage render demo.yaml --animated -o demo-animated.svg
-```
-
----
-
-## Window
-
-SVGs render with a macOS-style title bar (traffic light dots, centered title, rounded corners). Font stack: JetBrains Mono, Fira Code, Cascadia Code, monospace.
-
----
-
-## Examples
-
-```bash
-termstage init
-termstage render demo.yaml -o demo.svg
-termstage render demo.yaml --animated -o demo-animated.svg
-```
+| Command | Description |
+|---------|-------------|
+| `termstage init [output.yaml]` | Scaffold a starter YAML (default: `demo.yaml`) |
+| `termstage render <file.yaml>` | Render static SVG |
+| `termstage render <file.yaml> --animated` | Render animated CSS typewriter SVG |
+| `termstage render <file.yaml> -o out.svg` | Custom output path |
+| `termstage preview <file.yaml>` | Render and open in browser |
+| `termstage preview <file.yaml> --animated` | Preview animated version |
+| `termstage themes` | List available themes |
 
 ---
 

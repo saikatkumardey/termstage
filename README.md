@@ -1,5 +1,7 @@
 # termstage
 
+<img src="demo-animated.svg" alt="termstage demo" width="720">
+
 Fake terminal demos. Write a YAML file describing the session, run `termstage render`, get an SVG. No recording, no live shell, no asciinema.
 
 Good for README headers and docs where you want to show what a CLI looks like without screenshotting your actual terminal.

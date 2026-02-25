@@ -32,6 +32,7 @@ Thumbs.db
 # Output SVGs (examples)
 *.svg
 !examples/*.svg
+!demo-animated.svg
 
 # Test artifacts
 .pytest_cache/

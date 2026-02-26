@@ -1,0 +1,33 @@
+title: "dq — data query CLI"
+theme: nord
+prompt: "› "
+width: 700
+
+steps:
+  - comment: "# Load and inspect a CSV file"
+
+  - cmd: "dq load sales.csv"
+    output: |
+      Loaded sales.csv  (12 847 rows × 8 cols)
+      Columns: date, region, product, qty, price, discount, revenue, rep
+
+  - cmd: "dq describe revenue"
+    output: |
+      count    12847
+      mean     $2 341.88
+      std      $1 108.24
+      min      $12.00
+      max      $9 990.00
+
+  - comment: "# Run a quick aggregation"
+
+  - cmd: "dq group-by region --agg revenue:sum --sort desc"
+    output: |
+      region      revenue
+      APAC        $14 291 043
+      EMEA        $11 873 220
+      AMER        $10 552 891
+      LATAM        $3 841 007
+
+  - cmd: "dq export results.parquet"
+    output: "Wrote 4 rows → results.parquet  (1.2 KB)"

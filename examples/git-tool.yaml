@@ -1,0 +1,28 @@
+title: "gitx — smarter git shortcuts"
+theme: dracula
+prompt: "$ "
+width: 700
+
+steps:
+  - comment: "# Initialize a new repo and make the first commit"
+
+  - cmd: "gitx init my-project"
+    output: |
+      Initialized empty Git repository in my-project/.git/
+      Created default branch: main
+
+  - cmd: "gitx stage ."
+    output: "Staged 12 files  (3 new, 9 modified)"
+
+  - cmd: "gitx save 'feat: add user authentication'"
+    output: |
+      [main 3f8a2d1] feat: add user authentication
+       12 files changed, 284 insertions(+), 11 deletions(-)
+
+  - comment: "# See a clean log summary"
+
+  - cmd: "gitx log --short"
+    output: |
+      3f8a2d1  feat: add user authentication       (2 min ago)
+      a91cb04  fix: handle empty session tokens     (1 hr ago)
+      d7e3891  chore: update dependencies           (yesterday)

@@ -1,5 +1,9 @@
 # termstage
 
+[![PyPI](https://img.shields.io/pypi/v/termstage)](https://pypi.org/project/termstage/)
+[![Python](https://img.shields.io/pypi/pyversions/termstage)](https://pypi.org/project/termstage/)
+[![Tests](https://github.com/saikatkumardey/termstage/actions/workflows/ci.yml/badge.svg)](https://github.com/saikatkumardey/termstage/actions/workflows/ci.yml)
+
 <img src="demo-animated.svg" alt="termstage demo" width="720">
 
 Generate polished terminal demo SVGs from a YAML file. No recording, no live shell, no asciinema.

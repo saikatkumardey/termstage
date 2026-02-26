@@ -1,6 +1,6 @@
 [project]
 name = "termstage"
-version = "0.2.0"
+version = "0.3.0"
 description = "Fake terminal demos. YAML in, SVG out. No recording."
 readme = "README.md"
 requires-python = ">=3.11"
@@ -18,3 +18,9 @@ build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/termstage"]
+
+[tool.uv.sources]
+# nothing needed
+
+[dependency-groups]
+dev = ["pytest>=8.0"]

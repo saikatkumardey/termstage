@@ -5,6 +5,16 @@ from __future__ import annotations
 import html
 from typing import Any
 
+# Maximum characters per line before truncation (fits in ~700px wide terminal)
+MAX_LINE_CHARS = 80
+
+
+def _truncate(text: str, max_chars: int = MAX_LINE_CHARS) -> str:
+    """Truncate text with ellipsis if it exceeds max_chars."""
+    if len(text) > max_chars:
+        return text[: max_chars - 1] + "…"
+    return text
+
 from .themes import (
     COMMENT_COLOR,
     FONT_FAMILY,
@@ -98,7 +108,7 @@ def render_svg(config: dict[str, Any]) -> str:
 
     for i, step in enumerate(steps):
         if "comment" in step:
-            comment_text = step["comment"]
+            comment_text = _truncate(step["comment"])
             lines_svg.append(
                 f'    <text x="{PADDING}" y="{y}" '
                 f'font-family={FONT_FAMILY!r} font-size="{FONT_SIZE}" '
@@ -108,7 +118,8 @@ def render_svg(config: dict[str, Any]) -> str:
             y += LINE_HEIGHT
 
         elif "cmd" in step:
-            cmd = step["cmd"]
+            # Truncate cmd so prompt+cmd fits within MAX_LINE_CHARS
+            cmd = _truncate(step["cmd"], MAX_LINE_CHARS - len(prompt))
             output = step.get("output", "")
 
             # Render prompt + command on same line using tspan
@@ -128,7 +139,7 @@ def render_svg(config: dict[str, Any]) -> str:
                         f'    <text x="{PADDING}" y="{y}" '
                         f'font-family={FONT_FAMILY!r} font-size="{FONT_SIZE}" '
                         f'fill="{OUTPUT_COLOR}" xml:space="preserve">'
-                        f"{_escape(line)}</text>"
+                        f"{_escape(_truncate(line))}</text>"
                     )
                     y += LINE_HEIGHT
 
@@ -139,7 +150,8 @@ def render_svg(config: dict[str, Any]) -> str:
     title_bar_svg = _render_title_bar(width, title, theme)
     lines_joined = "\n".join(lines_svg)
 
-    svg = f"""<svg xmlns="http://www.w3.org/2000/svg"
+    svg = f"""<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
      width="{width}" height="{total_height}"
      viewBox="0 0 {width} {total_height}">
   <!-- Window frame -->

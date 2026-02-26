@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="700" height="496"
+     viewBox="0 0 700 496">
+  <!-- Window frame -->
+  <rect x="0" y="0" width="700" height="496"
+        rx="8" ry="8" fill="#282a36" />
+    <!-- Title bar -->
+    <rect x="0" y="0" width="700" height="38"
+          rx="8" ry="8" fill="#44475a" />
+    <!-- Fake bottom corners for title bar -->
+    <rect x="0" y="30" width="700" height="8"
+          fill="#44475a" />
+    <circle cx="16" cy="19" r="6" fill="#ff5f57" />
+    <circle cx="36" cy="19" r="6" fill="#febc2e" />
+    <circle cx="56" cy="19" r="6" fill="#28c840" />
+    <text x="350" y="24" font-family="'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace" font-size="13" fill="#f8f8f2" opacity="0.7" text-anchor="middle" dominant-baseline="middle">gitx — smarter git shortcuts</text>
+  <!-- Terminal body -->
+  <clipPath id="body-clip">
+    <rect x="0" y="38" width="700" height="458"
+          rx="0" ry="0" />
+  </clipPath>
+  <g clip-path="url(#body-clip)">
+    <text x="20" y="80" font-family="'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace" font-size="14" fill="#6a9955" xml:space="preserve"># Initialize a new repo and make the first commit</text>
+    <text x="20" y="124" font-family="'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace" font-size="14" xml:space="preserve"><tspan fill="#50fa7b">$ </tspan><tspan fill="#f8f8f2">gitx init my-project</tspan></text>
+    <text x="20" y="146" font-family="'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace" font-size="14" fill="#aaaaaa" xml:space="preserve">Initialized empty Git repository in my-project/.git/</text>
+    <text x="20" y="168" font-family="'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace" font-size="14" fill="#aaaaaa" xml:space="preserve">Created default branch: main</text>
+    <text x="20" y="212" font-family="'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace" font-size="14" xml:space="preserve"><tspan fill="#50fa7b">$ </tspan><tspan fill="#f8f8f2">gitx stage .</tspan></text>
+    <text x="20" y="234" font-family="'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace" font-size="14" fill="#aaaaaa" xml:space="preserve">Staged 12 files  (3 new, 9 modified)</text>
+    <text x="20" y="278" font-family="'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace" font-size="14" xml:space="preserve"><tspan fill="#50fa7b">$ </tspan><tspan fill="#f8f8f2">gitx save &#x27;feat: add user authentication&#x27;</tspan></text>
+    <text x="20" y="300" font-family="'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace" font-size="14" fill="#aaaaaa" xml:space="preserve">[main 3f8a2d1] feat: add user authentication</text>
+    <text x="20" y="322" font-family="'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace" font-size="14" fill="#aaaaaa" xml:space="preserve"> 12 files changed, 284 insertions(+), 11 deletions(-)</text>
+    <text x="20" y="366" font-family="'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace" font-size="14" fill="#6a9955" xml:space="preserve"># See a clean log summary</text>
+    <text x="20" y="410" font-family="'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace" font-size="14" xml:space="preserve"><tspan fill="#50fa7b">$ </tspan><tspan fill="#f8f8f2">gitx log --short</tspan></text>
+    <text x="20" y="432" font-family="'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace" font-size="14" fill="#aaaaaa" xml:space="preserve">3f8a2d1  feat: add user authentication       (2 min ago)</text>
+    <text x="20" y="454" font-family="'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace" font-size="14" fill="#aaaaaa" xml:space="preserve">a91cb04  fix: handle empty session tokens     (1 hr ago)</text>
+    <text x="20" y="476" font-family="'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace" font-size="14" fill="#aaaaaa" xml:space="preserve">d7e3891  chore: update dependencies           (yesterday)</text>
+  </g>
+</svg>

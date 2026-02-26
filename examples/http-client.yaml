@@ -1,0 +1,30 @@
+title: "req — lightweight HTTP client"
+theme: light
+prompt: "% "
+width: 700
+
+steps:
+  - comment: "# Send a GET request"
+
+  - cmd: "req get https://api.example.com/users/42"
+    output: |
+      HTTP/1.1 200 OK
+      Content-Type: application/json
+
+      {
+        "id": 42,
+        "name": "Alice Chen",
+        "email": "alice@example.com"
+      }
+
+  - comment: "# POST with a JSON body"
+
+  - cmd: "req post /users --json '{\"name\":\"Bob\",\"role\":\"admin\"}'"
+    output: |
+      HTTP/1.1 201 Created
+      Location: /users/43
+
+      {"id": 43, "name": "Bob", "role": "admin"}
+
+  - cmd: "req get /users --header 'X-Page: 2' --quiet"
+    output: "200 OK  (48 bytes, 31ms)"

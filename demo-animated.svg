@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg"
-     width="700" height="518"
-     viewBox="0 0 700 518">
+     width="700" height="474"
+     viewBox="0 0 700 474">
   <style>
   @keyframes type-cmd0 {
     from { clip-path: inset(0 100% 0 0); }
@@ -131,82 +131,73 @@
     animation: fade-out7 0.40s ease 6.567s forwards;
   }
 
-  @keyframes type-c8 {
+  @keyframes type-cmd8 {
     from { clip-path: inset(0 100% 0 0); }
     to   { clip-path: inset(0 -2px 0 0); }
   }
-  .type-c8 {
+  .type-cmd8 {
     clip-path: inset(0 100% 0 0);
-    animation: type-c8 0.600s steps(18, end) 7.267s forwards;
+    animation: type-cmd8 0.733s steps(22, end) 7.267s forwards;
   }
 
-  @keyframes type-cmd9 {
-    from { clip-path: inset(0 100% 0 0); }
-    to   { clip-path: inset(0 -2px 0 0); }
-  }
-  .type-cmd9 {
-    clip-path: inset(0 100% 0 0);
-    animation: type-cmd9 0.733s steps(22, end) 8.467s forwards;
-  }
-
-  @keyframes blink-cmd9 {
+  @keyframes blink-cmd8 {
     0%, 49% { opacity: 1; }
     50%, 100% { opacity: 0; }
   }
-  .cursor-cmd9 {
+  .cursor-cmd8 {
     opacity: 0;
     animation:
-      blink-cmd9 0.6s step-end 8.467s 2,
-      fade-cmd9-out 0.01s linear 9.200s forwards;
+      blink-cmd8 0.6s step-end 7.267s 2,
+      fade-cmd8-out 0.01s linear 8.000s forwards;
   }
-  @keyframes fade-cmd9-out {
+  @keyframes fade-cmd8-out {
     to { opacity: 0; }
   }
 
-  @keyframes fade-out10 {
+  @keyframes fade-out9 {
     from { opacity: 0; }
     to   { opacity: 1; }
   }
-  .fade-out10 {
+  .fade-out9 {
     opacity: 0;
-    animation: fade-out10 0.40s ease 9.200s forwards;
+    animation: fade-out9 0.40s ease 8.000s forwards;
   }
 
-  @keyframes type-cmd11 {
+  @keyframes type-cmd10 {
     from { clip-path: inset(0 100% 0 0); }
     to   { clip-path: inset(0 -2px 0 0); }
   }
-  .type-cmd11 {
+  .type-cmd10 {
     clip-path: inset(0 100% 0 0);
-    animation: type-cmd11 0.467s steps(14, end) 9.900s forwards;
+    animation: type-cmd10 0.467s steps(14, end) 8.700s forwards;
   }
 
-  @keyframes blink-cmd11 {
+  @keyframes blink-cmd10 {
     0%, 49% { opacity: 1; }
     50%, 100% { opacity: 0; }
   }
-  .cursor-cmd11 {
+  .cursor-cmd10 {
     opacity: 0;
     animation:
-      blink-cmd11 0.6s step-end 9.900s 1,
-      fade-cmd11-out 0.01s linear 10.367s forwards;
+      blink-cmd10 0.6s step-end 8.700s 1,
+      fade-cmd10-out 0.01s linear 9.167s forwards;
   }
-  @keyframes fade-cmd11-out {
+  @keyframes fade-cmd10-out {
     to { opacity: 0; }
   }
 
-  @keyframes fade-out12 {
+  @keyframes fade-out11 {
     from { opacity: 0; }
     to   { opacity: 1; }
   }
-  .fade-out12 {
+  .fade-out11 {
     opacity: 0;
-    animation: fade-out12 0.40s ease 10.367s forwards;
+    animation: fade-out11 0.40s ease 9.167s forwards;
   }
 
   </style>
   <!-- Window frame -->
-  <rect x="0" y="0" width="700" height="518"
+  <rect x="0" y="0" width="700" height="474"
         rx="8" ry="8" fill="#1e1e1e" />
     <!-- Title bar -->
     <rect x="0" y="0" width="700" height="38"
@@ -219,7 +210,7 @@
     <text x="350" y="24" font-family="'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace" font-size="13" fill="#d4d4d4" opacity="0.7" text-anchor="middle" dominant-baseline="middle">notes — a simple CLI notes app</text>
   <!-- Terminal body -->
   <clipPath id="body-clip">
-    <rect x="0" y="38" width="700" height="480" />
+    <rect x="0" y="38" width="700" height="436" />
   </clipPath>
   <g clip-path="url(#body-clip)">
     <text x="20" y="80" font-family="'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace" font-size="14" xml:space="preserve" class="type-cmd0"><tspan fill="#4ec9b0">$ </tspan><tspan fill="#d4d4d4">notes --version</tspan></text>
@@ -235,12 +226,11 @@
     <rect x="122.5" y="264" width="8.5" height="16" fill="#d4d4d4" opacity="0.7" class="cursor-cmd6" />
     <text x="20" y="300" font-family="'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace" font-size="14" fill="#aaaaaa" xml:space="preserve" class="fade-out7">#1  Fix the login bug before Friday</text>
     <text x="20" y="322" font-family="'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace" font-size="14" fill="#aaaaaa" xml:space="preserve" class="fade-out7">#2  Review pull request from @alice</text>
-    <text x="20" y="366" font-family="'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace" font-size="14" fill="#6a9955" xml:space="preserve" class="type-c8"># Search works too</text>
-    <text x="20" y="410" font-family="'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace" font-size="14" xml:space="preserve" class="type-cmd9"><tspan fill="#4ec9b0">$ </tspan><tspan fill="#d4d4d4">notes search &#x27;login&#x27;</tspan></text>
-    <rect x="207.9" y="396" width="8.5" height="16" fill="#d4d4d4" opacity="0.7" class="cursor-cmd9" />
-    <text x="20" y="432" font-family="'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace" font-size="14" fill="#aaaaaa" xml:space="preserve" class="fade-out10">#1  Fix the login bug before Friday</text>
-    <text x="20" y="476" font-family="'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace" font-size="14" xml:space="preserve" class="type-cmd11"><tspan fill="#4ec9b0">$ </tspan><tspan fill="#d4d4d4">notes done 1</tspan></text>
-    <rect x="139.6" y="462" width="8.5" height="16" fill="#d4d4d4" opacity="0.7" class="cursor-cmd11" />
-    <text x="20" y="498" font-family="'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace" font-size="14" fill="#aaaaaa" xml:space="preserve" class="fade-out12">Marked #1 as done</text>
+    <text x="20" y="366" font-family="'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace" font-size="14" xml:space="preserve" class="type-cmd8"><tspan fill="#4ec9b0">$ </tspan><tspan fill="#d4d4d4">notes search &#x27;login&#x27;</tspan></text>
+    <rect x="207.9" y="352" width="8.5" height="16" fill="#d4d4d4" opacity="0.7" class="cursor-cmd8" />
+    <text x="20" y="388" font-family="'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace" font-size="14" fill="#aaaaaa" xml:space="preserve" class="fade-out9">#1  Fix the login bug before Friday</text>
+    <text x="20" y="432" font-family="'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace" font-size="14" xml:space="preserve" class="type-cmd10"><tspan fill="#4ec9b0">$ </tspan><tspan fill="#d4d4d4">notes done 1</tspan></text>
+    <rect x="139.6" y="418" width="8.5" height="16" fill="#d4d4d4" opacity="0.7" class="cursor-cmd10" />
+    <text x="20" y="454" font-family="'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace" font-size="14" fill="#aaaaaa" xml:space="preserve" class="fade-out11">Marked #1 as done</text>
   </g>
 </svg>

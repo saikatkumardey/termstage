@@ -18,8 +18,6 @@ steps:
       #1  Fix the login bug before Friday
       #2  Review pull request from @alice
 
-  - comment: "# Search works too"
-
   - cmd: "notes search 'login'"
     output: "#1  Fix the login bug before Friday"
 

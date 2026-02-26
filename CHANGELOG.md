@@ -6,6 +6,19 @@ Versions follow [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [0.2.0] — 2026-02-25
+
+### Changed
+- `termstage init` now reads the starter template from `src/termstage/templates/starter.yaml` via `importlib.resources` — no more hardcoded YAML string in cli.py
+- Starter template has inline comments explaining each field
+
+### Added
+- Animated self-demo SVG in README (`demo-animated.svg`, Dracula theme)
+- `demo.yaml` in repo root — the demo used to generate the README SVG
+- Rewritten README with clear 5-step flow: init → edit → preview → render → embed
+
+---
+
 ## [0.1.0] — 2026-02-25
 
 ### Added

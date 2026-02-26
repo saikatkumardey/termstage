@@ -1,14 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg"
-     width="720" height="430"
-     viewBox="0 0 720 430">
+     width="700" height="518"
+     viewBox="0 0 700 518">
   <style>
   @keyframes type-cmd0 {
     from { clip-path: inset(0 100% 0 0); }
-    to   { clip-path: inset(0 0% 0 0); }
+    to   { clip-path: inset(0 -2px 0 0); }
   }
   .type-cmd0 {
     clip-path: inset(0 100% 0 0);
-    animation: type-cmd0 0.767s steps(23, end) 0.500s forwards;
+    animation: type-cmd0 0.567s steps(17, end) 0.500s forwards;
   }
 
   @keyframes blink-cmd0 {
@@ -18,8 +19,8 @@
   .cursor-cmd0 {
     opacity: 0;
     animation:
-      blink-cmd0 0.6s step-end 0.500s 2,
-      fade-cmd0-out 0.01s linear 1.267s forwards;
+      blink-cmd0 0.6s step-end 0.500s 1,
+      fade-cmd0-out 0.01s linear 1.067s forwards;
   }
   @keyframes fade-cmd0-out {
     to { opacity: 0; }
@@ -31,16 +32,16 @@
   }
   .fade-out1 {
     opacity: 0;
-    animation: fade-out1 0.40s ease 1.267s forwards;
+    animation: fade-out1 0.40s ease 1.067s forwards;
   }
 
   @keyframes type-cmd2 {
     from { clip-path: inset(0 100% 0 0); }
-    to   { clip-path: inset(0 0% 0 0); }
+    to   { clip-path: inset(0 -2px 0 0); }
   }
   .type-cmd2 {
     clip-path: inset(0 100% 0 0);
-    animation: type-cmd2 0.533s steps(16, end) 1.967s forwards;
+    animation: type-cmd2 1.500s steps(45, end) 1.767s forwards;
   }
 
   @keyframes blink-cmd2 {
@@ -50,8 +51,8 @@
   .cursor-cmd2 {
     opacity: 0;
     animation:
-      blink-cmd2 0.6s step-end 1.967s 1,
-      fade-cmd2-out 0.01s linear 2.500s forwards;
+      blink-cmd2 0.6s step-end 1.767s 3,
+      fade-cmd2-out 0.01s linear 3.267s forwards;
   }
   @keyframes fade-cmd2-out {
     to { opacity: 0; }
@@ -63,16 +64,16 @@
   }
   .fade-out3 {
     opacity: 0;
-    animation: fade-out3 0.40s ease 2.500s forwards;
+    animation: fade-out3 0.40s ease 3.267s forwards;
   }
 
   @keyframes type-cmd4 {
     from { clip-path: inset(0 100% 0 0); }
-    to   { clip-path: inset(0 0% 0 0); }
+    to   { clip-path: inset(0 -2px 0 0); }
   }
   .type-cmd4 {
     clip-path: inset(0 100% 0 0);
-    animation: type-cmd4 1.300s steps(39, end) 3.200s forwards;
+    animation: type-cmd4 1.500s steps(45, end) 3.967s forwards;
   }
 
   @keyframes blink-cmd4 {
@@ -82,8 +83,8 @@
   .cursor-cmd4 {
     opacity: 0;
     animation:
-      blink-cmd4 0.6s step-end 3.200s 3,
-      fade-cmd4-out 0.01s linear 4.500s forwards;
+      blink-cmd4 0.6s step-end 3.967s 3,
+      fade-cmd4-out 0.01s linear 5.467s forwards;
   }
   @keyframes fade-cmd4-out {
     to { opacity: 0; }
@@ -95,83 +96,151 @@
   }
   .fade-out5 {
     opacity: 0;
-    animation: fade-out5 0.40s ease 4.500s forwards;
+    animation: fade-out5 0.40s ease 5.467s forwards;
   }
 
-  @keyframes type-c6 {
+  @keyframes type-cmd6 {
     from { clip-path: inset(0 100% 0 0); }
-    to   { clip-path: inset(0 0% 0 0); }
+    to   { clip-path: inset(0 -2px 0 0); }
   }
-  .type-c6 {
+  .type-cmd6 {
     clip-path: inset(0 100% 0 0);
-    animation: type-c6 1.967s steps(59, end) 5.200s forwards;
+    animation: type-cmd6 0.400s steps(12, end) 6.167s forwards;
   }
 
-  @keyframes type-cmd7 {
-    from { clip-path: inset(0 100% 0 0); }
-    to   { clip-path: inset(0 0% 0 0); }
-  }
-  .type-cmd7 {
-    clip-path: inset(0 100% 0 0);
-    animation: type-cmd7 0.600s steps(18, end) 7.767s forwards;
-  }
-
-  @keyframes blink-cmd7 {
+  @keyframes blink-cmd6 {
     0%, 49% { opacity: 1; }
     50%, 100% { opacity: 0; }
   }
-  .cursor-cmd7 {
+  .cursor-cmd6 {
     opacity: 0;
     animation:
-      blink-cmd7 0.6s step-end 7.767s 2,
-      fade-cmd7-out 0.01s linear 8.367s forwards;
+      blink-cmd6 0.6s step-end 6.167s 1,
+      fade-cmd6-out 0.01s linear 6.567s forwards;
   }
-  @keyframes fade-cmd7-out {
+  @keyframes fade-cmd6-out {
     to { opacity: 0; }
   }
 
-  @keyframes fade-out8 {
+  @keyframes fade-out7 {
     from { opacity: 0; }
     to   { opacity: 1; }
   }
-  .fade-out8 {
+  .fade-out7 {
     opacity: 0;
-    animation: fade-out8 0.40s ease 8.367s forwards;
+    animation: fade-out7 0.40s ease 6.567s forwards;
+  }
+
+  @keyframes type-c8 {
+    from { clip-path: inset(0 100% 0 0); }
+    to   { clip-path: inset(0 -2px 0 0); }
+  }
+  .type-c8 {
+    clip-path: inset(0 100% 0 0);
+    animation: type-c8 0.600s steps(18, end) 7.267s forwards;
+  }
+
+  @keyframes type-cmd9 {
+    from { clip-path: inset(0 100% 0 0); }
+    to   { clip-path: inset(0 -2px 0 0); }
+  }
+  .type-cmd9 {
+    clip-path: inset(0 100% 0 0);
+    animation: type-cmd9 0.733s steps(22, end) 8.467s forwards;
+  }
+
+  @keyframes blink-cmd9 {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0; }
+  }
+  .cursor-cmd9 {
+    opacity: 0;
+    animation:
+      blink-cmd9 0.6s step-end 8.467s 2,
+      fade-cmd9-out 0.01s linear 9.200s forwards;
+  }
+  @keyframes fade-cmd9-out {
+    to { opacity: 0; }
+  }
+
+  @keyframes fade-out10 {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  .fade-out10 {
+    opacity: 0;
+    animation: fade-out10 0.40s ease 9.200s forwards;
+  }
+
+  @keyframes type-cmd11 {
+    from { clip-path: inset(0 100% 0 0); }
+    to   { clip-path: inset(0 -2px 0 0); }
+  }
+  .type-cmd11 {
+    clip-path: inset(0 100% 0 0);
+    animation: type-cmd11 0.467s steps(14, end) 9.900s forwards;
+  }
+
+  @keyframes blink-cmd11 {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0; }
+  }
+  .cursor-cmd11 {
+    opacity: 0;
+    animation:
+      blink-cmd11 0.6s step-end 9.900s 1,
+      fade-cmd11-out 0.01s linear 10.367s forwards;
+  }
+  @keyframes fade-cmd11-out {
+    to { opacity: 0; }
+  }
+
+  @keyframes fade-out12 {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  .fade-out12 {
+    opacity: 0;
+    animation: fade-out12 0.40s ease 10.367s forwards;
   }
 
   </style>
   <!-- Window frame -->
-  <rect x="0" y="0" width="720" height="430"
-        rx="8" ry="8" fill="#282a36" />
+  <rect x="0" y="0" width="700" height="518"
+        rx="8" ry="8" fill="#1e1e1e" />
     <!-- Title bar -->
-    <rect x="0" y="0" width="720" height="38"
-          rx="8" ry="8" fill="#44475a" />
-    <rect x="0" y="30" width="720" height="8"
-          fill="#44475a" />
+    <rect x="0" y="0" width="700" height="38"
+          rx="8" ry="8" fill="#323233" />
+    <rect x="0" y="30" width="700" height="8"
+          fill="#323233" />
     <circle cx="16" cy="19" r="6" fill="#ff5f57" />
     <circle cx="36" cy="19" r="6" fill="#febc2e" />
     <circle cx="56" cy="19" r="6" fill="#28c840" />
-    <text x="360" y="24" font-family="'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace" font-size="13" fill="#f8f8f2" opacity="0.7" text-anchor="middle" dominant-baseline="middle">termstage</text>
+    <text x="350" y="24" font-family="'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace" font-size="13" fill="#d4d4d4" opacity="0.7" text-anchor="middle" dominant-baseline="middle">notes — a simple CLI notes app</text>
   <!-- Terminal body -->
   <clipPath id="body-clip">
-    <rect x="0" y="38" width="720" height="392" />
+    <rect x="0" y="38" width="700" height="480" />
   </clipPath>
   <g clip-path="url(#body-clip)">
-    <text x="20" y="80" font-family="'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace" font-size="14" xml:space="preserve" class="type-cmd0"><tspan fill="#50fa7b">$ </tspan><tspan fill="#f8f8f2">pip install termstage</tspan></text>
-    <rect x="216.4" y="66" width="8.5" height="16" fill="#f8f8f2" opacity="0.7" class="cursor-cmd0" />
-    <text x="20" y="102" font-family="'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace" font-size="14" fill="#aaaaaa" xml:space="preserve" class="fade-out1">Successfully installed termstage-0.1.0</text>
-    <text x="20" y="146" font-family="'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace" font-size="14" xml:space="preserve" class="type-cmd2"><tspan fill="#50fa7b">$ </tspan><tspan fill="#f8f8f2">termstage init</tspan></text>
-    <rect x="156.6" y="132" width="8.5" height="16" fill="#f8f8f2" opacity="0.7" class="cursor-cmd2" />
-    <text x="20" y="168" font-family="'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace" font-size="14" fill="#aaaaaa" xml:space="preserve" class="fade-out3">Created demo.yaml — edit it, then run: termstage render demo.yaml</text>
-    <text x="20" y="212" font-family="'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace" font-size="14" xml:space="preserve" class="type-cmd4"><tspan fill="#50fa7b">$ </tspan><tspan fill="#f8f8f2">termstage render demo.yaml --animated</tspan></text>
-    <rect x="353.1" y="198" width="8.5" height="16" fill="#f8f8f2" opacity="0.7" class="cursor-cmd4" />
-    <text x="20" y="234" font-family="'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace" font-size="14" fill="#aaaaaa" xml:space="preserve" class="fade-out5">Rendered → demo-animated.svg</text>
-    <text x="20" y="278" font-family="'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace" font-size="14" fill="#6a9955" xml:space="preserve" class="type-c6"># embed the SVG anywhere — GitHub READMEs, docs, portfolios</text>
-    <text x="20" y="322" font-family="'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace" font-size="14" xml:space="preserve" class="type-cmd7"><tspan fill="#50fa7b">$ </tspan><tspan fill="#f8f8f2">termstage themes</tspan></text>
-    <rect x="173.7" y="308" width="8.5" height="16" fill="#f8f8f2" opacity="0.7" class="cursor-cmd7" />
-    <text x="20" y="344" font-family="'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace" font-size="14" fill="#aaaaaa" xml:space="preserve" class="fade-out8">dark     #1e1e1e  VS Code Dark+</text>
-    <text x="20" y="366" font-family="'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace" font-size="14" fill="#aaaaaa" xml:space="preserve" class="fade-out8">light    #ffffff  Clean light</text>
-    <text x="20" y="388" font-family="'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace" font-size="14" fill="#aaaaaa" xml:space="preserve" class="fade-out8">dracula  #282a36  Dracula</text>
-    <text x="20" y="410" font-family="'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace" font-size="14" fill="#aaaaaa" xml:space="preserve" class="fade-out8">nord     #2e3440  Nord</text>
+    <text x="20" y="80" font-family="'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace" font-size="14" xml:space="preserve" class="type-cmd0"><tspan fill="#4ec9b0">$ </tspan><tspan fill="#d4d4d4">notes --version</tspan></text>
+    <rect x="165.2" y="66" width="8.5" height="16" fill="#d4d4d4" opacity="0.7" class="cursor-cmd0" />
+    <text x="20" y="102" font-family="'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace" font-size="14" fill="#aaaaaa" xml:space="preserve" class="fade-out1">notes 1.0.0</text>
+    <text x="20" y="146" font-family="'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace" font-size="14" xml:space="preserve" class="type-cmd2"><tspan fill="#4ec9b0">$ </tspan><tspan fill="#d4d4d4">notes add &#x27;Fix the login bug before Friday&#x27;</tspan></text>
+    <rect x="404.3" y="132" width="8.5" height="16" fill="#d4d4d4" opacity="0.7" class="cursor-cmd2" />
+    <text x="20" y="168" font-family="'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace" font-size="14" fill="#aaaaaa" xml:space="preserve" class="fade-out3">Added note #1</text>
+    <text x="20" y="212" font-family="'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace" font-size="14" xml:space="preserve" class="type-cmd4"><tspan fill="#4ec9b0">$ </tspan><tspan fill="#d4d4d4">notes add &#x27;Review pull request from @alice&#x27;</tspan></text>
+    <rect x="404.3" y="198" width="8.5" height="16" fill="#d4d4d4" opacity="0.7" class="cursor-cmd4" />
+    <text x="20" y="234" font-family="'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace" font-size="14" fill="#aaaaaa" xml:space="preserve" class="fade-out5">Added note #2</text>
+    <text x="20" y="278" font-family="'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace" font-size="14" xml:space="preserve" class="type-cmd6"><tspan fill="#4ec9b0">$ </tspan><tspan fill="#d4d4d4">notes list</tspan></text>
+    <rect x="122.5" y="264" width="8.5" height="16" fill="#d4d4d4" opacity="0.7" class="cursor-cmd6" />
+    <text x="20" y="300" font-family="'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace" font-size="14" fill="#aaaaaa" xml:space="preserve" class="fade-out7">#1  Fix the login bug before Friday</text>
+    <text x="20" y="322" font-family="'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace" font-size="14" fill="#aaaaaa" xml:space="preserve" class="fade-out7">#2  Review pull request from @alice</text>
+    <text x="20" y="366" font-family="'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace" font-size="14" fill="#6a9955" xml:space="preserve" class="type-c8"># Search works too</text>
+    <text x="20" y="410" font-family="'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace" font-size="14" xml:space="preserve" class="type-cmd9"><tspan fill="#4ec9b0">$ </tspan><tspan fill="#d4d4d4">notes search &#x27;login&#x27;</tspan></text>
+    <rect x="207.9" y="396" width="8.5" height="16" fill="#d4d4d4" opacity="0.7" class="cursor-cmd9" />
+    <text x="20" y="432" font-family="'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace" font-size="14" fill="#aaaaaa" xml:space="preserve" class="fade-out10">#1  Fix the login bug before Friday</text>
+    <text x="20" y="476" font-family="'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace" font-size="14" xml:space="preserve" class="type-cmd11"><tspan fill="#4ec9b0">$ </tspan><tspan fill="#d4d4d4">notes done 1</tspan></text>
+    <rect x="139.6" y="462" width="8.5" height="16" fill="#d4d4d4" opacity="0.7" class="cursor-cmd11" />
+    <text x="20" y="498" font-family="'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace" font-size="14" fill="#aaaaaa" xml:space="preserve" class="fade-out12">Marked #1 as done</text>
   </g>
 </svg>

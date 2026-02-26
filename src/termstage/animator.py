@@ -94,7 +94,7 @@ def _make_keyframes(anim_id: str, n_chars: int, start_s: float, duration_s: floa
     return (
         f"  @keyframes type-{anim_id} {{\n"
         f"    from {{ clip-path: inset(0 100% 0 0); }}\n"
-        f"    to   {{ clip-path: inset(0 0% 0 0); }}\n"
+        f"    to   {{ clip-path: inset(0 -2px 0 0); }}\n"
         f"  }}\n"
         f"  .type-{anim_id} {{\n"
         f"    clip-path: inset(0 100% 0 0);\n"

@@ -1,0 +1,24 @@
+title: "termstage"
+theme: dracula
+prompt: "$ "
+width: 720
+
+steps:
+  - cmd: "pip install termstage"
+    output: |
+      Successfully installed termstage-0.1.0
+
+  - cmd: "termstage init"
+    output: "Created demo.yaml — edit it, then run: termstage render demo.yaml"
+
+  - cmd: "termstage render demo.yaml --animated"
+    output: "Rendered → demo-animated.svg"
+
+  - comment: "# embed the SVG anywhere — GitHub READMEs, docs, portfolios"
+
+  - cmd: "termstage themes"
+    output: |
+      dark     #1e1e1e  VS Code Dark+
+      light    #ffffff  Clean light
+      dracula  #282a36  Dracula
+      nord     #2e3440  Nord

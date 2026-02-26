@@ -1,0 +1,26 @@
+title: "my-cli"          # title bar text
+theme: dark              # dark | light | dracula | nord
+prompt: "$ "             # prompt string
+width: 700               # SVG width in pixels
+
+steps:
+  - comment: "# Replace these steps with your own commands and output"
+
+  - cmd: "my-cli --version"
+    output: "my-cli 1.0.0"
+
+  - cmd: "my-cli process data.csv"
+    output: |
+      Reading data.csv...
+      Processed 10,000 rows
+      Output → results.jsonl
+
+  - cmd: "my-cli --help"
+    output: |
+      Usage: my-cli [OPTIONS] COMMAND
+
+        process   Process a CSV file
+        export    Export results
+
+      Options:
+        --help    Show this message and exit.

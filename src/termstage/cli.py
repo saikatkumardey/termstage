@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import subprocess
 import sys
+from importlib.resources import files
 from pathlib import Path
 from typing import Annotated, Optional
 
@@ -72,36 +73,10 @@ def init(
         if not overwrite:
             raise typer.Exit(0)
 
-    content = """\
-title: "My CLI Demo"
-theme: dark          # dark | light | dracula | nord
-prompt: "$ "
-width: 700
-
-steps:
-  - comment: "# Welcome to termstage — terminal demos without recording"
-
-  - cmd: "mytool encode 37.7749 -122.4194"
-    output: "8928308280fffff"
-
-  - cmd: "mytool --help"
-    output: |
-      Usage: mytool [OPTIONS] COMMAND
-
-        encode    Encode lat/lng to H3 cell ID
-        decode    Decode H3 cell ID to lat/lng
-
-      Options:
-        --help    Show this message and exit.
-
-  - comment: "# Supports batch mode too"
-
-  - cmd: "mytool encode --batch coords.csv"
-    output: "Processed 1000 rows → output.jsonl"
-"""
+    content = files("termstage.templates").joinpath("starter.yaml").read_text(encoding="utf-8")
     output.write_text(content, encoding="utf-8")
     typer.echo(f"✅ Created {output}")
-    typer.echo("Run: termstage render demo.yaml")
+    typer.echo("Edit it, then run: termstage render demo.yaml")
 
 
 @app.command()

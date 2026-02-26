@@ -5,6 +5,16 @@ from __future__ import annotations
 import html
 from typing import Any
 
+# Maximum characters per line before truncation (fits in ~700px wide terminal)
+MAX_LINE_CHARS = 80
+
+
+def _truncate(text: str, max_chars: int = MAX_LINE_CHARS) -> str:
+    """Truncate text with ellipsis if it exceeds max_chars."""
+    if len(text) > max_chars:
+        return text[: max_chars - 1] + "…"
+    return text
+
 from .themes import (
     COMMENT_COLOR,
     FONT_FAMILY,
@@ -152,7 +162,7 @@ def render_animated_svg(config: dict[str, Any]) -> str:
 
     for i, step in enumerate(steps):
         if "comment" in step:
-            comment_text = step["comment"]
+            comment_text = _truncate(step["comment"])
             aid = f"c{anim_counter}"
             anim_counter += 1
             n_chars = len(comment_text)
@@ -171,7 +181,7 @@ def render_animated_svg(config: dict[str, Any]) -> str:
             time_cursor += STEP_PAUSE
 
         elif "cmd" in step:
-            cmd = step["cmd"]
+            cmd = _truncate(step["cmd"], MAX_LINE_CHARS - len(prompt))
             output = step.get("output", "")
 
             full_line = prompt + cmd
@@ -222,7 +232,7 @@ def render_animated_svg(config: dict[str, Any]) -> str:
                         f'    <text x="{PADDING}" y="{y}" '
                         f'font-family={FONT_FAMILY!r} font-size="{FONT_SIZE}" '
                         f'fill="{OUTPUT_COLOR}" xml:space="preserve" class="fade-{oid}">'
-                        f"{_escape(line)}</text>"
+                        f"{_escape(_truncate(line))}</text>"
                     )
                     y += LINE_HEIGHT
 
@@ -235,7 +245,8 @@ def render_animated_svg(config: dict[str, Any]) -> str:
     keyframes_css = "\n".join(keyframes_parts)
     elements_joined = "\n".join(elements)
 
-    svg = f"""<svg xmlns="http://www.w3.org/2000/svg"
+    svg = f"""<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
      width="{width}" height="{total_height}"
      viewBox="0 0 {width} {total_height}">
   <style>

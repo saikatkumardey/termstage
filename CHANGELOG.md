@@ -6,6 +6,21 @@ Versions follow [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [0.3.0] — 2026-02-26
+
+### Added
+- **Test suite** (`tests/test_termstage.py`, 33 tests via pytest): covers static and
+  animated SVG rendering, all 4 themes, `cmd`/`comment` step types, empty steps,
+  long lines, and Unicode input
+- **3 new example YAMLs**: `examples/git-tool.yaml` (dracula), `examples/data-cli.yaml`
+  (nord), `examples/http-client.yaml` (light) — realistic CLI demos
+- **UTF-8 XML declaration** (`<?xml version="1.0" encoding="UTF-8"?>`) on all rendered SVGs
+- **Long-line truncation**: lines exceeding 80 chars are clipped with `…` in both
+  `renderer.py` and `animator.py` to prevent text overflow outside the SVG viewport
+- `pytest>=8.0` dev dependency in `pyproject.toml`
+
+---
+
 ## [0.2.0] — 2026-02-25
 
 ### Changed

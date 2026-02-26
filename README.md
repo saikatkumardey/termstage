@@ -10,10 +10,20 @@ Write what you want the terminal to show. Get a clean SVG you can drop into any 
 
 ## Install
 
+**As a standalone tool** (recommended):
+
 ```bash
-pip install termstage
+pipx install termstage
 # or
+uv tool install termstage
+```
+
+**Into a project**:
+
+```bash
 uv add termstage
+# or
+pip install termstage
 ```
 
 ---

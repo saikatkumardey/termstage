@@ -1,6 +1,6 @@
 [project]
 name = "termstage"
-version = "0.4.4"
+version = "0.4.5"
 description = "Fake terminal demos. YAML in, SVG out. No recording."
 readme = "README.md"
 requires-python = ">=3.11"

@@ -1,0 +1,25 @@
+title: "termstage"
+theme: dark
+prompt: "$ "
+width: 700
+
+steps:
+  - cmd: "pipx install termstage"
+    output: |
+      installed package termstage 0.4.2
+      These apps are now globally available: termstage
+
+  - cmd: "termstage init"
+    output: |
+      ✅ Created demo.yaml
+      Edit it, then run: termstage render demo.yaml
+
+  - cmd: "termstage render demo.yaml --animated"
+    output: "✅ Rendered animated SVG → demo.svg"
+
+  - cmd: "termstage themes"
+    output: |
+      dark     ●
+      light    ●
+      dracula  ●
+      nord     ●

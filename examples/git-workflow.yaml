@@ -1,0 +1,32 @@
+title: "git workflow"
+theme: dark
+prompt: "❯ "
+width: 700
+
+steps:
+  - cmd: "git status"
+    output: |
+      On branch main
+      Changes not staged for commit:
+        modified:   src/auth.py
+        modified:   tests/test_auth.py
+
+  - cmd: "git add ."
+
+  - cmd: "git diff --stat --cached"
+    output: |
+      src/auth.py      | 42 +++++++++++++++++++++++++++
+      tests/test_auth.py | 18 ++++++++++++
+      2 files changed, 60 insertions(+)
+
+  - cmd: "git commit -m 'feat: add user authentication'"
+    output: |
+      [main 4c2f9a1] feat: add user authentication
+       2 files changed, 60 insertions(+)
+
+  - cmd: "git push origin main"
+    output: |
+      Enumerating objects: 9, done.
+      Writing objects: 100% (5/5), 1.23 KiB | 1.23 MiB/s
+      To github.com:saikatkumardey/myapp.git
+         a1b2c3d..4c2f9a1  main -> main

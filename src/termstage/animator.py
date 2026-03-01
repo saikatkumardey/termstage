@@ -36,6 +36,8 @@ CHARS_PER_SEC = 30
 FADE_DURATION = 0.4
 # Seconds pause after each step before next starts
 STEP_PAUSE = 0.3
+# Seconds to hold completed animation before looping
+LOOP_PAUSE = 2.0
 
 
 def _escape(text: str) -> str:
@@ -85,56 +87,79 @@ def _render_title_bar(width: int, title: str, theme: dict) -> str:
     {dots_html}{title_svg}"""
 
 
-def _make_keyframes(anim_id: str, n_chars: int, start_s: float, duration_s: float) -> str:
-    """Generate @keyframes for a typewriter clip-path width expansion."""
-    # We use a clipPath trick: text is clipped by a rect whose width grows.
-    # Each character is ~ch wide; we animate max-width via clip-path.
-    # Actually we'll use the 'steps()' timing function with clip-path width.
-    # The animation: from width=0 to width=full_width over duration_s
-    # with steps(n_chars, end) for discrete character reveals.
+# ---------------------------------------------------------------------------
+# Looping keyframe generators
+# All animations are infinite loops of duration `loop_dur` seconds.
+# The typing/fade effect is encoded as percentage keyframes; the steps()
+# timing function is set per-keyframe so it only applies to the typing phase.
+# ---------------------------------------------------------------------------
+
+def _pct(t: float, loop_dur: float) -> str:
+    return f"{t / loop_dur * 100:.3f}%"
+
+
+def _make_keyframes(
+    anim_id: str, n_chars: int, start_s: float, duration_s: float, loop_dur: float
+) -> str:
+    """Typewriter clip-path animation, looping."""
+    sp = _pct(start_s, loop_dur)
+    ep = _pct(start_s + duration_s, loop_dur)
     steps_fn = f"steps({max(n_chars, 1)}, end)"
-    delay_s = start_s
 
     return (
         f"  @keyframes type-{anim_id} {{\n"
-        f"    from {{ clip-path: inset(0 100% 0 0); }}\n"
-        f"    to   {{ clip-path: inset(0 -2px 0 0); }}\n"
+        f"    0%    {{ clip-path: inset(0 100% 0 0); }}\n"
+        f"    {sp}  {{ clip-path: inset(0 100% 0 0); animation-timing-function: {steps_fn}; }}\n"
+        f"    {ep}  {{ clip-path: inset(0 -20px 0 0); }}\n"
+        f"    99.9% {{ clip-path: inset(0 -20px 0 0); }}\n"
+        f"    100%  {{ clip-path: inset(0 100% 0 0); }}\n"
         f"  }}\n"
         f"  .type-{anim_id} {{\n"
         f"    clip-path: inset(0 100% 0 0);\n"
-        f"    animation: type-{anim_id} {duration_s:.3f}s {steps_fn} {delay_s:.3f}s forwards;\n"
+        f"    animation: type-{anim_id} {loop_dur:.3f}s linear 0s infinite;\n"
         f"  }}\n"
     )
 
 
-def _make_fade_keyframes(anim_id: str, start_s: float) -> str:
+def _make_fade_keyframes(anim_id: str, start_s: float, loop_dur: float) -> str:
+    """Fade-in animation, looping."""
+    sp = _pct(start_s, loop_dur)
+    ep = _pct(start_s + FADE_DURATION, loop_dur)
+
     return (
         f"  @keyframes fade-{anim_id} {{\n"
-        f"    from {{ opacity: 0; }}\n"
-        f"    to   {{ opacity: 1; }}\n"
+        f"    0%    {{ opacity: 0; }}\n"
+        f"    {sp}  {{ opacity: 0; }}\n"
+        f"    {ep}  {{ opacity: 1; }}\n"
+        f"    99.9% {{ opacity: 1; }}\n"
+        f"    100%  {{ opacity: 0; }}\n"
         f"  }}\n"
         f"  .fade-{anim_id} {{\n"
         f"    opacity: 0;\n"
-        f"    animation: fade-{anim_id} {FADE_DURATION:.2f}s ease {start_s:.3f}s forwards;\n"
+        f"    animation: fade-{anim_id} {loop_dur:.3f}s linear 0s infinite;\n"
         f"  }}\n"
     )
 
 
-def _make_cursor_keyframes(anim_id: str, start_s: float, end_s: float) -> str:
-    """Cursor blinks during typing, then disappears."""
+def _make_cursor_keyframes(
+    anim_id: str, start_s: float, end_s: float, loop_dur: float
+) -> str:
+    """Blinking cursor: visible during typing, hidden otherwise."""
+    sp = _pct(start_s, loop_dur)
+    ep = _pct(end_s, loop_dur)
+    # tiny nudge so two keyframes at same pct don't collapse
+    sp_plus = f"{(start_s + 0.001) / loop_dur * 100:.4f}%"
+
     return (
-        f"  @keyframes blink-{anim_id} {{\n"
-        f"    0%, 49% {{ opacity: 1; }}\n"
-        f"    50%, 100% {{ opacity: 0; }}\n"
+        f"  @keyframes cursor-{anim_id} {{\n"
+        f"    0%, {sp} {{ opacity: 0; }}\n"
+        f"    {sp_plus} {{ opacity: 1; animation-timing-function: steps(1, end); }}\n"
+        f"    {ep}      {{ opacity: 0; }}\n"
+        f"    100%       {{ opacity: 0; }}\n"
         f"  }}\n"
         f"  .cursor-{anim_id} {{\n"
         f"    opacity: 0;\n"
-        f"    animation:\n"
-        f"      blink-{anim_id} 0.6s step-end {start_s:.3f}s {int((end_s - start_s) / 0.6) + 1},\n"
-        f"      fade-{anim_id}-out 0.01s linear {end_s:.3f}s forwards;\n"
-        f"  }}\n"
-        f"  @keyframes fade-{anim_id}-out {{\n"
-        f"    to {{ opacity: 0; }}\n"
+        f"    animation: cursor-{anim_id} {loop_dur:.3f}s linear 0s infinite;\n"
         f"  }}\n"
     )
 
@@ -143,6 +168,7 @@ def render_animated_svg(config: dict[str, Any]) -> str:
     """
     Render an animated SVG terminal window from config dict.
     Uses CSS @keyframes for typewriter + fade-in effects. No JS.
+    Animations loop indefinitely with a pause between iterations.
     """
     title = config.get("title", "termstage demo")
     theme_name = config.get("theme", "dark")
@@ -151,101 +177,143 @@ def render_animated_svg(config: dict[str, Any]) -> str:
     steps = config.get("steps", [])
 
     theme = THEMES.get(theme_name, THEMES["dark"])
+    max_chars = _max_chars(width)
+    char_width = FONT_SIZE * 0.61
 
+    # ------------------------------------------------------------------
+    # Pass 1: compute timing for every step
+    # ------------------------------------------------------------------
+    timed: list[dict] = []  # enriched step records
+    time_cursor = 0.5  # slight initial pause
+    anim_counter = 0
+
+    for i, step in enumerate(steps):
+        if "comment" in step:
+            text = _truncate(step["comment"], max_chars)
+            aid = f"c{anim_counter}"
+            anim_counter += 1
+            n = len(text)
+            dur = n / CHARS_PER_SEC
+            timed.append(
+                dict(kind="comment", aid=aid, text=text, start=time_cursor, dur=dur)
+            )
+            time_cursor += dur + STEP_PAUSE
+
+        elif "cmd" in step:
+            cmd = _truncate(step["cmd"], max_chars - len(prompt))
+            full_line = prompt + cmd
+            aid = f"cmd{anim_counter}"
+            anim_counter += 1
+            n = len(full_line)
+            dur = n / CHARS_PER_SEC
+            cursor_x = PADDING + n * char_width
+
+            output_record = None
+            if step.get("output", ""):
+                oid = f"out{anim_counter}"
+                anim_counter += 1
+                output_lines = step["output"].rstrip("\n").split("\n")
+                output_record = dict(
+                    oid=oid,
+                    lines=[_truncate(ln, max_chars) for ln in output_lines],
+                    start=time_cursor + dur,
+                )
+                time_cursor += dur + FADE_DURATION
+            else:
+                time_cursor += dur
+
+            timed.append(
+                dict(
+                    kind="cmd",
+                    aid=aid,
+                    cmd=cmd,
+                    prompt=prompt,
+                    full_line=full_line,
+                    n=n,
+                    dur=dur,
+                    start=time_cursor - dur - (FADE_DURATION if output_record else 0),
+                    cursor_x=cursor_x,
+                    output=output_record,
+                )
+            )
+
+        if i < len(steps) - 1:
+            time_cursor += STEP_PAUSE
+
+    loop_dur = time_cursor + LOOP_PAUSE
+
+    # ------------------------------------------------------------------
+    # Pass 2: generate keyframes + SVG elements
+    # ------------------------------------------------------------------
     n_lines = _count_lines(steps)
     body_height = PADDING + n_lines * LINE_HEIGHT + PADDING
     total_height = TITLE_BAR_HEIGHT + body_height
-
-    max_chars = _max_chars(width)
 
     keyframes_parts: list[str] = []
     elements: list[str] = []
 
     y = TITLE_BAR_HEIGHT + PADDING + LINE_HEIGHT
-    time_cursor = 0.5  # slight initial pause
 
-    anim_counter = 0
-
-    for i, step in enumerate(steps):
-        if "comment" in step:
-            comment_text = _truncate(step["comment"], max_chars)
-            aid = f"c{anim_counter}"
-            anim_counter += 1
-            n_chars = len(comment_text)
-            duration = n_chars / CHARS_PER_SEC
-
-            keyframes_parts.append(_make_keyframes(aid, n_chars, time_cursor, duration))
-            time_cursor += duration
-
+    for record in timed:
+        if record["kind"] == "comment":
+            aid = record["aid"]
+            keyframes_parts.append(
+                _make_keyframes(aid, len(record["text"]), record["start"], record["dur"], loop_dur)
+            )
             elements.append(
                 f'    <text x="{PADDING}" y="{y}" '
                 f'font-family={FONT_FAMILY!r} font-size="{FONT_SIZE}" '
                 f'fill="{COMMENT_COLOR}" xml:space="preserve" class="type-{aid}">'
-                f"{_escape(comment_text)}</text>"
+                f"{_escape(record['text'])}</text>"
             )
             y += LINE_HEIGHT
-            time_cursor += STEP_PAUSE
 
-        elif "cmd" in step:
-            cmd = _truncate(step["cmd"], max_chars - len(prompt))
-            output = step.get("output", "")
+        elif record["kind"] == "cmd":
+            aid = record["aid"]
+            start_s = record["start"]
+            end_s = start_s + record["dur"]
 
-            full_line = prompt + cmd
-            aid = f"cmd{anim_counter}"
-            anim_counter += 1
-            n_chars = len(full_line)
-            duration = n_chars / CHARS_PER_SEC
-
-            # Cursor appears at start of typing, disappears at end
-            cursor_end = time_cursor + duration
-            keyframes_parts.append(_make_keyframes(aid, n_chars, time_cursor, duration))
             keyframes_parts.append(
-                _make_cursor_keyframes(aid, time_cursor, cursor_end)
+                _make_keyframes(aid, record["n"], start_s, record["dur"], loop_dur)
             )
-
-            # Cursor x position: after the text. Approximate at font-size * 0.6 per char
-            char_width = FONT_SIZE * 0.61
-            cursor_x = PADDING + n_chars * char_width
+            keyframes_parts.append(
+                _make_cursor_keyframes(aid, start_s, end_s, loop_dur)
+            )
 
             elements.append(
                 f'    <text x="{PADDING}" y="{y}" '
                 f'font-family={FONT_FAMILY!r} font-size="{FONT_SIZE}" '
                 f'xml:space="preserve" class="type-{aid}">'
-                f'<tspan fill="{theme["prompt"]}">{_escape(prompt)}</tspan>'
-                f'<tspan fill="{theme["text"]}">{_escape(cmd)}</tspan>'
+                f'<tspan fill="{theme["prompt"]}">{_escape(record["prompt"])}</tspan>'
+                f'<tspan fill="{theme["text"]}">{_escape(record["cmd"])}</tspan>'
                 f"</text>"
             )
-            # Cursor rect (blinking block)
             elements.append(
-                f'    <rect x="{cursor_x:.1f}" y="{y - FONT_SIZE}" '
+                f'    <rect x="{record["cursor_x"]:.1f}" y="{y - FONT_SIZE}" '
                 f'width="{char_width:.1f}" height="{FONT_SIZE + 2}" '
                 f'fill="{theme["text"]}" opacity="0.7" class="cursor-{aid}" />'
             )
-
-            time_cursor = cursor_end
             y += LINE_HEIGHT
 
-            if output:
-                output_lines = output.rstrip("\n").split("\n")
-                # Fade in all output lines together
-                oid = f"out{anim_counter}"
-                anim_counter += 1
-                keyframes_parts.append(_make_fade_keyframes(oid, time_cursor))
-                time_cursor += FADE_DURATION
-
-                for line in output_lines:
+            if record["output"]:
+                oid = record["output"]["oid"]
+                keyframes_parts.append(
+                    _make_fade_keyframes(oid, record["output"]["start"], loop_dur)
+                )
+                for line in record["output"]["lines"]:
                     elements.append(
                         f'    <text x="{PADDING}" y="{y}" '
                         f'font-family={FONT_FAMILY!r} font-size="{FONT_SIZE}" '
                         f'fill="{OUTPUT_COLOR}" xml:space="preserve" class="fade-{oid}">'
-                        f"{_escape(_truncate(line, max_chars))}</text>"
+                        f"{_escape(line)}</text>"
                     )
                     y += LINE_HEIGHT
 
         # blank gap between steps
-        if i < len(steps) - 1:
-            y += LINE_HEIGHT
-            time_cursor += STEP_PAUSE
+        y += LINE_HEIGHT
+
+    # remove trailing blank line gap
+    y -= LINE_HEIGHT
 
     title_bar_svg = _render_title_bar(width, title, theme)
     keyframes_css = "\n".join(keyframes_parts)

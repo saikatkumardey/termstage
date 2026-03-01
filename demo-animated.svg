@@ -4,131 +4,143 @@
      viewBox="0 0 700 430">
   <style>
   @keyframes type-cmd0 {
-    from { clip-path: inset(0 100% 0 0); }
-    to   { clip-path: inset(0 -2px 0 0); }
+    0%    { clip-path: inset(0 100% 0 0); }
+    6.073%  { clip-path: inset(0 100% 0 0); animation-timing-function: steps(24, end); }
+    15.789%  { clip-path: inset(0 -20px 0 0); }
+    99.9% { clip-path: inset(0 -20px 0 0); }
+    100%  { clip-path: inset(0 100% 0 0); }
   }
   .type-cmd0 {
     clip-path: inset(0 100% 0 0);
-    animation: type-cmd0 0.800s steps(24, end) 0.500s forwards;
+    animation: type-cmd0 8.233s linear 0s infinite;
   }
 
-  @keyframes blink-cmd0 {
-    0%, 49% { opacity: 1; }
-    50%, 100% { opacity: 0; }
+  @keyframes cursor-cmd0 {
+    0%, 6.073% { opacity: 0; }
+    6.0850% { opacity: 1; animation-timing-function: steps(1, end); }
+    15.789%      { opacity: 0; }
+    100%       { opacity: 0; }
   }
   .cursor-cmd0 {
     opacity: 0;
-    animation:
-      blink-cmd0 0.6s step-end 0.500s 2,
-      fade-cmd0-out 0.01s linear 1.300s forwards;
-  }
-  @keyframes fade-cmd0-out {
-    to { opacity: 0; }
+    animation: cursor-cmd0 8.233s linear 0s infinite;
   }
 
   @keyframes fade-out1 {
-    from { opacity: 0; }
-    to   { opacity: 1; }
+    0%    { opacity: 0; }
+    15.789%  { opacity: 0; }
+    20.648%  { opacity: 1; }
+    99.9% { opacity: 1; }
+    100%  { opacity: 0; }
   }
   .fade-out1 {
     opacity: 0;
-    animation: fade-out1 0.40s ease 1.300s forwards;
+    animation: fade-out1 8.233s linear 0s infinite;
   }
 
   @keyframes type-cmd2 {
-    from { clip-path: inset(0 100% 0 0); }
-    to   { clip-path: inset(0 -2px 0 0); }
+    0%    { clip-path: inset(0 100% 0 0); }
+    24.291%  { clip-path: inset(0 100% 0 0); animation-timing-function: steps(16, end); }
+    30.769%  { clip-path: inset(0 -20px 0 0); }
+    99.9% { clip-path: inset(0 -20px 0 0); }
+    100%  { clip-path: inset(0 100% 0 0); }
   }
   .type-cmd2 {
     clip-path: inset(0 100% 0 0);
-    animation: type-cmd2 0.533s steps(16, end) 2.000s forwards;
+    animation: type-cmd2 8.233s linear 0s infinite;
   }
 
-  @keyframes blink-cmd2 {
-    0%, 49% { opacity: 1; }
-    50%, 100% { opacity: 0; }
+  @keyframes cursor-cmd2 {
+    0%, 24.291% { opacity: 0; }
+    24.3036% { opacity: 1; animation-timing-function: steps(1, end); }
+    30.769%      { opacity: 0; }
+    100%       { opacity: 0; }
   }
   .cursor-cmd2 {
     opacity: 0;
-    animation:
-      blink-cmd2 0.6s step-end 2.000s 1,
-      fade-cmd2-out 0.01s linear 2.533s forwards;
-  }
-  @keyframes fade-cmd2-out {
-    to { opacity: 0; }
+    animation: cursor-cmd2 8.233s linear 0s infinite;
   }
 
   @keyframes fade-out3 {
-    from { opacity: 0; }
-    to   { opacity: 1; }
+    0%    { opacity: 0; }
+    30.769%  { opacity: 0; }
+    35.628%  { opacity: 1; }
+    99.9% { opacity: 1; }
+    100%  { opacity: 0; }
   }
   .fade-out3 {
     opacity: 0;
-    animation: fade-out3 0.40s ease 2.533s forwards;
+    animation: fade-out3 8.233s linear 0s infinite;
   }
 
   @keyframes type-cmd4 {
-    from { clip-path: inset(0 100% 0 0); }
-    to   { clip-path: inset(0 -2px 0 0); }
+    0%    { clip-path: inset(0 100% 0 0); }
+    39.271%  { clip-path: inset(0 100% 0 0); animation-timing-function: steps(39, end); }
+    55.061%  { clip-path: inset(0 -20px 0 0); }
+    99.9% { clip-path: inset(0 -20px 0 0); }
+    100%  { clip-path: inset(0 100% 0 0); }
   }
   .type-cmd4 {
     clip-path: inset(0 100% 0 0);
-    animation: type-cmd4 1.300s steps(39, end) 3.233s forwards;
+    animation: type-cmd4 8.233s linear 0s infinite;
   }
 
-  @keyframes blink-cmd4 {
-    0%, 49% { opacity: 1; }
-    50%, 100% { opacity: 0; }
+  @keyframes cursor-cmd4 {
+    0%, 39.271% { opacity: 0; }
+    39.2834% { opacity: 1; animation-timing-function: steps(1, end); }
+    55.061%      { opacity: 0; }
+    100%       { opacity: 0; }
   }
   .cursor-cmd4 {
     opacity: 0;
-    animation:
-      blink-cmd4 0.6s step-end 3.233s 3,
-      fade-cmd4-out 0.01s linear 4.533s forwards;
-  }
-  @keyframes fade-cmd4-out {
-    to { opacity: 0; }
+    animation: cursor-cmd4 8.233s linear 0s infinite;
   }
 
   @keyframes fade-out5 {
-    from { opacity: 0; }
-    to   { opacity: 1; }
+    0%    { opacity: 0; }
+    55.061%  { opacity: 0; }
+    59.919%  { opacity: 1; }
+    99.9% { opacity: 1; }
+    100%  { opacity: 0; }
   }
   .fade-out5 {
     opacity: 0;
-    animation: fade-out5 0.40s ease 4.533s forwards;
+    animation: fade-out5 8.233s linear 0s infinite;
   }
 
   @keyframes type-cmd6 {
-    from { clip-path: inset(0 100% 0 0); }
-    to   { clip-path: inset(0 -2px 0 0); }
+    0%    { clip-path: inset(0 100% 0 0); }
+    63.563%  { clip-path: inset(0 100% 0 0); animation-timing-function: steps(18, end); }
+    70.850%  { clip-path: inset(0 -20px 0 0); }
+    99.9% { clip-path: inset(0 -20px 0 0); }
+    100%  { clip-path: inset(0 100% 0 0); }
   }
   .type-cmd6 {
     clip-path: inset(0 100% 0 0);
-    animation: type-cmd6 0.600s steps(18, end) 5.233s forwards;
+    animation: type-cmd6 8.233s linear 0s infinite;
   }
 
-  @keyframes blink-cmd6 {
-    0%, 49% { opacity: 1; }
-    50%, 100% { opacity: 0; }
+  @keyframes cursor-cmd6 {
+    0%, 63.563% { opacity: 0; }
+    63.5749% { opacity: 1; animation-timing-function: steps(1, end); }
+    70.850%      { opacity: 0; }
+    100%       { opacity: 0; }
   }
   .cursor-cmd6 {
     opacity: 0;
-    animation:
-      blink-cmd6 0.6s step-end 5.233s 1,
-      fade-cmd6-out 0.01s linear 5.833s forwards;
-  }
-  @keyframes fade-cmd6-out {
-    to { opacity: 0; }
+    animation: cursor-cmd6 8.233s linear 0s infinite;
   }
 
   @keyframes fade-out7 {
-    from { opacity: 0; }
-    to   { opacity: 1; }
+    0%    { opacity: 0; }
+    70.850%  { opacity: 0; }
+    75.709%  { opacity: 1; }
+    99.9% { opacity: 1; }
+    100%  { opacity: 0; }
   }
   .fade-out7 {
     opacity: 0;
-    animation: fade-out7 0.40s ease 5.833s forwards;
+    animation: fade-out7 8.233s linear 0s infinite;
   }
 
   </style>

@@ -4,11 +4,11 @@
 [![Python](https://img.shields.io/pypi/pyversions/termstage)](https://pypi.org/project/termstage/)
 [![Tests](https://github.com/saikatkumardey/termstage/actions/workflows/ci.yml/badge.svg)](https://github.com/saikatkumardey/termstage/actions/workflows/ci.yml)
 
+**Animated terminal SVGs from YAML — no recording, no GIFs, no asciinema.**
+
 <img src="demo-animated.svg" alt="termstage demo" width="720">
 
-Generate polished terminal demo SVGs from a YAML file. No recording, no live shell, no asciinema.
-
-Write what you want the terminal to show. Get a clean SVG you can drop into any README, doc, or portfolio.
+Write what you want the terminal to show. Get a crisp, lightweight SVG that loops forever and embeds directly in any README, doc, or portfolio.
 
 ---
 
@@ -32,7 +32,7 @@ pip install termstage
 
 ---
 
-## The Flow
+## Quick Start
 
 **1. Scaffold a starter file**
 

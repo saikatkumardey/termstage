@@ -8,7 +8,7 @@
 
 <img src="demo-animated.svg" alt="termstage demo" width="720">
 
-Write what you want the terminal to show. Get a crisp, lightweight SVG that loops forever and embeds directly in any README, doc, or portfolio.
+Screen recordings go stale. GIFs are huge. asciinema requires a runtime. termstage takes a YAML file and produces an SVG — edit text, get an animation. Pure CSS, no JavaScript. Drops straight into any GitHub README.
 
 ---
 
@@ -34,27 +34,23 @@ pip install termstage
 
 ## Quick Start
 
-**1. Scaffold a starter file**
+**1. Create a starter file**
 
 ```bash
 termstage init
 ```
 
-Creates `demo.yaml` in the current directory with example steps you can edit.
+Creates `demo.yaml` with example steps. Replace them with your own commands and output.
 
-**2. Edit `demo.yaml`**
-
-Open `demo.yaml` and replace the example steps with your own commands and output. See [YAML format](#yaml-format) below.
-
-**3. Preview in browser**
+**2. Preview in browser**
 
 ```bash
 termstage preview demo.yaml
 ```
 
-Opens a rendered SVG in your default browser. Iterate here until it looks right.
+Opens the SVG in your default browser. Tweak the YAML, preview again until it looks right.
 
-**4. Render to SVG**
+**3. Render to SVG**
 
 ```bash
 # Static SVG
@@ -67,7 +63,7 @@ termstage render demo.yaml --animated
 termstage render demo.yaml --animated -o assets/demo.svg
 ```
 
-**5. Embed in your README**
+**4. Embed in your README**
 
 ```markdown
 ![demo](demo.svg)
@@ -79,7 +75,7 @@ Or for more control over sizing:
 <img src="demo-animated.svg" alt="demo" width="700">
 ```
 
-The animated SVG uses pure CSS — no JavaScript. Works on GitHub, GitLab, and anywhere SVG is rendered.
+Pure CSS, no JavaScript. Works on GitHub, GitLab, and anywhere that renders SVG.
 
 ---
 

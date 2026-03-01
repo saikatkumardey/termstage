@@ -5,16 +5,6 @@ from __future__ import annotations
 import html
 from typing import Any
 
-# Maximum characters per line before truncation (fits in ~700px wide terminal)
-MAX_LINE_CHARS = 80
-
-
-def _truncate(text: str, max_chars: int = MAX_LINE_CHARS) -> str:
-    """Truncate text with ellipsis if it exceeds max_chars."""
-    if len(text) > max_chars:
-        return text[: max_chars - 1] + "…"
-    return text
-
 from .themes import (
     COMMENT_COLOR,
     FONT_FAMILY,
@@ -25,6 +15,20 @@ from .themes import (
     THEMES,
     TITLE_BAR_HEIGHT,
 )
+
+
+def _truncate(text: str, max_chars: int) -> str:
+    """Truncate text with ellipsis if it exceeds max_chars."""
+    if len(text) > max_chars:
+        return text[: max_chars - 1] + "…"
+    return text
+
+
+def _max_chars(width: int) -> int:
+    """Compute max characters per line that fit within the SVG width."""
+    char_width = FONT_SIZE * 0.61
+    return int((width - 2 * PADDING) / char_width)
+
 
 # Characters per second for typing animation
 CHARS_PER_SEC = 30
@@ -152,6 +156,8 @@ def render_animated_svg(config: dict[str, Any]) -> str:
     body_height = PADDING + n_lines * LINE_HEIGHT + PADDING
     total_height = TITLE_BAR_HEIGHT + body_height
 
+    max_chars = _max_chars(width)
+
     keyframes_parts: list[str] = []
     elements: list[str] = []
 
@@ -162,7 +168,7 @@ def render_animated_svg(config: dict[str, Any]) -> str:
 
     for i, step in enumerate(steps):
         if "comment" in step:
-            comment_text = _truncate(step["comment"])
+            comment_text = _truncate(step["comment"], max_chars)
             aid = f"c{anim_counter}"
             anim_counter += 1
             n_chars = len(comment_text)
@@ -181,7 +187,7 @@ def render_animated_svg(config: dict[str, Any]) -> str:
             time_cursor += STEP_PAUSE
 
         elif "cmd" in step:
-            cmd = _truncate(step["cmd"], MAX_LINE_CHARS - len(prompt))
+            cmd = _truncate(step["cmd"], max_chars - len(prompt))
             output = step.get("output", "")
 
             full_line = prompt + cmd
@@ -232,7 +238,7 @@ def render_animated_svg(config: dict[str, Any]) -> str:
                         f'    <text x="{PADDING}" y="{y}" '
                         f'font-family={FONT_FAMILY!r} font-size="{FONT_SIZE}" '
                         f'fill="{OUTPUT_COLOR}" xml:space="preserve" class="fade-{oid}">'
-                        f"{_escape(_truncate(line))}</text>"
+                        f"{_escape(_truncate(line, max_chars))}</text>"
                     )
                     y += LINE_HEIGHT
 
